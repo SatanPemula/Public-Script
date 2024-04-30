@@ -1,70 +1,53 @@
-commandList = ">>> Command: /w /d /b /cd /daw /rgid /rmac /logout /reconnect"
-hax = {}
-hax.hook = AddHook
-hax.owner = "`4[ S x T ]`` "
-hax.log = function(str) 
-  logToConsole(hax.owner..str) 
+local char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+local hax = {}
+local length = 4 
+local logFossil = false
+local logObject = false
+local owner = "[ S  x  T  x  N ] "
+
+function log(st) 
+  logToConsole(owner.. st) 
 end
-hax.log("`2PROXY `4BETA`` Active!") 
-sleep(2000) 
-hax.log("User ID : ".. getDiscordID()) 
-sleep(1000) 
-hax.log("Grow ID : ".. getLocal().name)
-hax.drop = function(itemid, amt) 
-  for _, item in pairs(getInventory()) do
-        if item.id == 1796 and itemid == 1796 then
-            if item.amount < amt then
-                sendPacketRaw(false,{
-                    type = 10,
-                    value = 242,
-                })
-            break
-            end
-        elseif item.id == 242 and itemid == 242 then
-            if item.amount < amt then
-                sendPacketRaw(false,{
-                    type = 10,
-                    value = 1796,
-                })
-            break
-            end
-        end
-    end
-    sendPacket(2, "action|drop\n|itemID|" .. itm) 
-    sendPacket(2, "action|dialog_return\ndialog_name|drop_item\nitemID|" .. itm .. "|\ncount|" .. amt)
-    sleep(100)
+
+function warp(world) 
+  sendPacket(3, "action|join_request\nname|".. world) 
 end
-hax.hook("OnTextPacket","Satan v0.1", function(type, str) 
-    if str:find("/hax") then
-      hax.log(commandList) 
-      return true
-    end
-    if str:find("/w") then
-      hax.log("`4Wrong Command !\n`2Usage : /w amount") 
-    elseif str:find("/w (%d+)") then
-      local amount = str:match("/w (%d+)") 
-      hax.drop(242, amount) 
-      hax.log("`9Dropped `#".. amount .. "`` World Lock") 
-      return true
-    end
-    if str:find("/logout") then
-      sendVariant({
-          [0] = "OnLogout", 
-        },-1) 
-      return true
-    end
-  return false
+
+for obj in char:gmatch(".") do
+  table.insert(hax, obj) 
+end
+
+function gen() 
+  obj = ""
+  for i = 1, length do
+    obj = obj .. hax[math.random(1, #hax)]
   end
-)
-hax.hook("OnVarlist","Satan v0.1", function(var)
-    if var[0] == "OnConsoleMessage" then
-      hax.log(var[1]) 
-      return true
-    end
-    if var[0] == "OnDialogRequest" and var[1]:find("drop_item") then
-      if var[1]:find("World Lock") or var[1]:find("Diamond Lock") or var[1]:find("Blue Gem Lock") then
-        return true
+  return obj:upper() 
+end
+
+function box(bool) 
+  local str = ""
+  if bool then
+    str = "1"
+  else
+    str = "0"
+  end
+  return str
+end
+
+AddHook("OnTextPacket","Hookied", function(type, str) 
+    if str:find("/ping") then
+      local ping = getLocal().ping
+      local pingColor = ""
+      if ping >= 300 then
+        pingColor = "`4"
+      elseif ping >= 250 then
+        pingColor = `9"
+      else
+        pingColor = "`2"
       end
+      log("Current Ping : ".. pingColor..ping) 
+      return true
     end
     return false
   end
