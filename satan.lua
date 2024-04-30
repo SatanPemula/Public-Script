@@ -7,4 +7,5 @@ function log(str)
 end
 
 log(" Hello User ! ") 
-log(discord)
+sleep(1000) 
+log(" User ID : "..discord)
