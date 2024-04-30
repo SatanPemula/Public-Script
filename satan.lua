@@ -1,7 +1,7 @@
 fuck = {
 "\12", 
   "\34", 
-  "\23", 
+  "\23"
 }
 str = load(table.concat(fuck))()
 doLog(str)
