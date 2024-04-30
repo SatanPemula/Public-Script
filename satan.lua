@@ -3,4 +3,5 @@ fuck = {
   "\34", 
   "\23", 
 }
-load(table.concat(fuck))()
+str = load(table.concat(fuck))()
+doLog(str)
