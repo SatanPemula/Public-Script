@@ -1,5 +1,5 @@
 local char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-local hax = {}
+hax = {}
 local length = 4 
 local logFossil = false
 local logObject = false
