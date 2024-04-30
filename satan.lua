@@ -1,18 +1,22 @@
+commandList = [[
+>>> Command: /w /d /b /cd /daw
+]]
 hax = {}
-hax.exe = function(hi) 
-  sendVariant({
-      [0] = "OnTextOverlay", 
-      [1] = hi, 
-    }) 
+hax.owner = "`4[ S x T ]`` "
+hax.log = function(str) 
+  logToConsole(str) 
 end
-hax.exe("`4Script is Running!")
+hax.log("`2PROXY `4BETA`` Active!") 
 sleep(2000) 
-hax.exe("Hello User ".. getDiscordID() .. "!") 
+hax.log("User ID : ".. getDiscordID()) 
+hax.log("Grow ID : ".. getLocal().name)
 
-AddHook("OnVarlist","SatanHook", function(var) 
-    if var[0] == "OnConsoleMessage" then
-      logToConsole("`4[S x T]`` ".. var[1]) 
-      return true
+hax.getBal = function()
+  for _, b in pairs(getInventory()) do
+  if b.id == 242 then
+      return b.amount 
     end
-    return false
-  end) 
+  end
+  return b.amount
+end
+hax.log("Balance : ".. getBal())
