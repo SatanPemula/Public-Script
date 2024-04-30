@@ -9,3 +9,4 @@ end
 log(" Hello User ! ") 
 sleep(1000) 
 log(" User ID : "..discord)
+sleep(1) 
