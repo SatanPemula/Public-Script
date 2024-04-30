@@ -10,7 +10,7 @@ sleep(2000)
 hax.log("User ID : ".. getDiscordID()) 
 sleep(1000) 
 hax.log("Grow ID : ".. getLocal().name)
-hax.drop = function(itm, amt) 
+hax.drop = function(itemid, amt) 
   for _, item in pairs(getInventory()) do
         if item.id == 1796 and itemid == 1796 then
             if item.amount < amt then
