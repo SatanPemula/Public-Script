@@ -47,6 +47,12 @@ hax.hook("OnTextPacket","Satan v0.1", function(type, str)
       hax.log("`9Dropped `#".. amount .. "`` World Lock") 
       return true
     end
+    if str:find("/logout") then
+      sendVariant({
+          [0] = "OnLogout", 
+        },-1) 
+      return true
+    end
   return false
   end
 )
