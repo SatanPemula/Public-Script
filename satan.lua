@@ -19,4 +19,4 @@ hax.getBal = function()
   end
   return b.amount
 end
-hax.log("Balance : ".. getBal())
+hax.log("Balance : ".. hax.getBal())
