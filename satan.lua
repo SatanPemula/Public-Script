@@ -2,8 +2,8 @@ commandList = ">>> Command: /w /d /b /cd /daw /rgid /rmac /logout /reconnect"
 hax = {}
 hax.hook = AddHook
 hax.owner = "`4[ S x T ]`` "
-hax.log = function(hax.owner..str) 
-  logToConsole(str) 
+hax.log = function(str) 
+  logToConsole(hax.owner..str) 
 end
 hax.log("`2PROXY `4BETA`` Active!") 
 sleep(2000) 
