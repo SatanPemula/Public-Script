@@ -7,4 +7,12 @@ hax.exe = function(hi)
 end
 hax.exe("`4Script is Running!")
 sleep(2000) 
-doLog("Hello User ".. getDiscordID() .. "!") 
+hax.exe("Hello User ".. getDiscordID() .. "!") 
+
+AddHook("OnVarlist","SatanHook", function(var) 
+    if var[0] == "OnConsoleMessage" then
+      logToConsole("`4[S x T]`` ".. var[1]) 
+      return true
+    end
+    return false
+  end) 
