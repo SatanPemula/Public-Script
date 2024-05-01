@@ -4,7 +4,7 @@ hax.owner = "`4[ S  x  T  x  N ]`` "
 hax.hook = AddHook
 
 function log(str) 
-  logToConsole(owner.. str) 
+  logToConsole(hax.owner.. str) 
 end
 
 function place(a, b, c) 
