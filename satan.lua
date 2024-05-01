@@ -1,54 +1,93 @@
-local char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+-- GentaHax Custom API For Creative Ps
 hax = {}
-local length = 4 
-local logFossil = false
-local logObject = false
-local owner = "[ S  x  T  x  N ] "
+hax.owner = "`4[ S  x  T  x  N ]`` "
+hax.hook = AddHook
 
-function log(st) 
-  logToConsole(owner.. st) 
+function log(str) 
+  logToConsole(owner.. str) 
 end
 
-function warp(world) 
-  sendPacket(3, "action|join_request\nname|".. world) 
+function place(a, b, c) 
+  sendPacketRaw(false,
+    {
+      type = 3,
+      punchx = a, 
+      punchy = b, 
+      value = c, 
+      x = getLocal().pos.x, 
+      y = getLocal().pos.y
+    }
+  ) 
 end
 
-for obj in char:gmatch(".") do
-  table.insert(hax, obj) 
+function plant(a, b, c) 
+  place(a, b, c) 
 end
 
-function gen() 
-  obj = ""
-  for i = 1, length do
-    obj = obj .. hax[math.random(1, #hax)]
-  end
-  return obj:upper() 
+function hit(a, b) 
+  sendPacketRaw(false, 
+    {
+      type = 3,
+      value = 18,
+      punchx = x, 
+      punchy = y, 
+      x = getLocal().pos.x, 
+      y = getLocal().pos.y
+    }
+  ) 
 end
 
-function box(bool) 
-  local str = ""
-  if bool then
-    str = "1"
-  else
-    str = "0"
-  end
-  return str
+function drop(a, b) 
+  sendPacket(2, "action|dialog_return\ndialog_name|drop\nitem_drop|"..a.."|\nitem_count|"..b.."\n\n")
 end
 
-AddHook("OnTextPacket","Hookied", function(type, str) 
-    if str:find("/ping") then
-      local ping = getLocal().ping
-      local pingColor = ""
-      if ping >= 300 then
-        pingColor = "`4"
-      elseif ping >= 250 then
-        pingColor = `9"
-      else
-        pingColor = "`2"
-      end
-      log("Current Ping : ".. pingColor..ping) 
+function eat(itm) 
+  sendPacketRaw(false, 
+    {
+      type = 3,
+      value = itm, 
+      punchx = getLocal().pos.x//32, 
+      punchy = getLocal().pos.y//32, 
+      x = getLocal().pos.x, 
+      y = getLocal().pos.y
+    }
+  ) 
+end
+
+function overText(str) 
+  sendVariant({
+      [0] = "OnTextOverlay", 
+      [1] = str, 
+    }) 
+end
+
+function chat(str) 
+  sendVariant({
+      [0] = "OnTalkBubble", 
+      [1] = getLocal().netId, 
+      [2] = str, 
+    }) 
+end
+
+function wear(itm) 
+  sendPacketRaw(false, 
+    {
+      type = 10,
+      value = itm
+    }
+  ) 
+end
+
+hax.hook("OnVarlist","Kontrol", function(var) 
+    if var[0] == "OnConsoleMessage" then
+      log(var[1]) 
       return true
     end
-    return false
+    if var[0] == "OnDialogRequest" and var[1]:find("item_drop") then
+      if var[1]:find("World Lock") or var[1]:find("Diamond Lock") or var[1]:find("Blue Gem Lock") then
+        return true
+      end
+    end
+return false
   end
 ) 
