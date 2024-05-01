@@ -7,32 +7,10 @@ function log(str)
   logToConsole(hax.owner.. str) 
 end
 
-function place(a, b, c) 
-  sendPacketRaw(false,
-    {
-      type = 3,
-      punchx = a, 
-      punchy = b, 
-      value = c, 
-      x = getLocal().pos.x, 
-      y = getLocal().pos.y
-    }
-  ) 
-end
-
-function plant(a, b, c) 
-  place(a, b, c) 
-end
-
-function hit(a, b) 
-  sendPacketRaw(false, 
-    {
-      type = 3,
-      value = 18,
-      punchx = x, 
-      punchy = y, 
-      x = getLocal().pos.x, 
-      y = getLocal().pos.y
+function overText(str)
+  sendVariant({
+      [0] = "OnTextOverlay", 
+      [1] = str, 
     }
   ) 
 end
@@ -41,43 +19,62 @@ function drop(a, b)
   sendPacket(2, "action|dialog_return\ndialog_name|drop\nitem_drop|"..a.."|\nitem_count|"..b.."\n\n")
 end
 
-function eat(itm) 
-  sendPacketRaw(false, 
-    {
-      type = 3,
-      value = itm, 
-      punchx = getLocal().pos.x//32, 
-      punchy = getLocal().pos.y//32, 
-      x = getLocal().pos.x, 
-      y = getLocal().pos.y
-    }
-  ) 
-end
-
-function overText(str) 
-  sendVariant({
-      [0] = "OnTextOverlay", 
-      [1] = str, 
-    }) 
-end
-
-function chat(str) 
-  sendVariant({
-      [0] = "OnTalkBubble", 
-      [1] = getLocal().netId, 
-      [2] = str, 
-    }) 
-end
-
-function wear(itm) 
+function wear(x) 
   sendPacketRaw(false, 
     {
       type = 10,
-      value = itm
+      value = x, 
     }
   ) 
 end
 
+
+hax.hook("OnTextPacket", "CommandList",function(type, str) 
+    if str:find("/dw (%d+)") then
+      local amt = str:match("/dw (%d+)") 
+      wear(1796) 
+      drop(242, amt)
+      log("`9Dropped `#".. amt .. "`` World lock") 
+      return true
+    end
+    if str:find("/dd (%d+)") then
+      local amt = str:match("/dd (%d+)") 
+      wear(7188) 
+      drop(1796, amt)
+      log("`9Dropped `#".. amt .. "`` Diamond lock") 
+      return true
+    end
+    if str:find("/db (%d+)") then
+      local amt = str:match("/db (%d+)")
+      drop(7188, amt)
+      log("`9Dropped `#".. amt .. "`` Blue Gem lock") 
+      return true
+    end
+    if str:find("/ping") then
+      local ping = getLocal().ping
+      text = ""
+      if ping >= 400 then
+        text = "`4"
+      elseif ping >= 200 then
+        text = "`9"
+      else
+        text = "`2"
+        log("Current Ping : ".. text .. ping) 
+      end
+      return true
+    end
+    if str:find("/daw") then
+      for _, e in pairs(getInventory()) do
+        if e.id == 242 and e.id == 1796 and e.id == 7188 then
+          drop(e.id, e.amount) 
+          log("`2ALL IN") 
+        end
+      end
+      return true
+    end
+    return false
+  end
+)
 hax.hook("OnVarlist","Kontrol", function(var) 
     if var[0] == "OnConsoleMessage" then
       log(var[1]) 
