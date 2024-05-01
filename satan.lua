@@ -91,3 +91,9 @@ hax.hook("OnVarlist","Kontrol", function(var)
 return false
   end
 ) 
+
+log("`4Costume API Loaded!") 
+sleep(200) 
+log("Hello ".. getLocal().name.. "\nDiscordUID : ".. getDiscordID().. "\nUserID : ".. getLocal().userId) 
+sleep(200) 
+overText("Have Fun!!!!!!") 
