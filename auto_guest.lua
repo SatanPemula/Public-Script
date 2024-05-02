@@ -7,7 +7,7 @@ function sendFileContent(strGid, strMac)
   if file then
     file:write("GID : ".. strGid .. "\nMAC : ".. strMac .. "\n") 
     file:close() 
-    doLog("Format: "..getGid()..":"..getMac().."\nSAVED!")
+    doLog("Account Saved.") 
   else
     doLog("Cannot Open File.") 
   end
