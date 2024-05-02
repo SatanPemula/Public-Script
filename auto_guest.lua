@@ -5,7 +5,7 @@ local filePath = "sdcard/Android/media/GENTAHAX/guest_save.txt"
 function sendFileContent(strGid, strMac) 
   local file = io.open(filePath, "a") 
   if file then
-    file:write("GID : ".. strGid .. "\MAC : ".. strMac .. "\n") 
+    file:write("GID : ".. strGid .. "\nMAC : ".. strMac .. "\n") 
     file:close() 
     doLog("Format: "..getGid()..":"..getMac().."\nSAVED!")
   else
