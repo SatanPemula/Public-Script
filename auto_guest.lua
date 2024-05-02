@@ -56,14 +56,15 @@ textOver("Go Captcha!")
 randomGid() 
 randomMac() 
 while true do
-  sleep(800) 
+  sleep(1200) 
   if placedLock == true then
     place(0, -1)
-    placeLock = false
+    placedLock = false
   end
   if reconnect == true then
     randomGid() 
     randomMac() 
+    sleep(2000) 
     sendVariant({[0] = "OnReconnect", }, -1) 
     textOver("Changed Guest Format")
     reconnect = false
