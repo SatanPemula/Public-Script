@@ -1,3 +1,6 @@
+local info = debug.getinfo(1, "S") 
+scriptName = info.source:match("[^/\\]+$")
+
 webhookSend = function() 
   monarchSatan = {}
   monarchSatan.username = "Bot Log"
