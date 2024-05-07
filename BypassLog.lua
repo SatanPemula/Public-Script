@@ -1,3 +1,4 @@
+-- Simple. 
 local info = debug.getinfo(1, "S") 
 scriptName = info.source:match("[^/\\]+$")
 
