@@ -1,5 +1,5 @@
 * `NetAvatar Struct`
 
-|     Type     |     Attribute     |
-|:-            |:-                 |
-| Memek        | TITIT             |
+|`Type`        |`Attribute`  |
+| :-           | :-          |
+| string       | name        |
