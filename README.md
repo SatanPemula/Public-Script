@@ -15,6 +15,6 @@ Growtopia
 Discord Server: Discord
 
 * `Script Path:`
-```lua
+* ```
 Android/media/GENTAHAX/Script/here.lua
 ```
