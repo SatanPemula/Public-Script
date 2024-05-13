@@ -19,4 +19,4 @@ Discord Server: Discord
 Android/media/GENTAHAX/Script/here.lua
 ```
 
-* ### Function's / Method
+* ### `Function - Method`
