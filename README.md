@@ -16,5 +16,7 @@ Discord Server: Discord
 
 * `Script Path:`
 ```
-* Android/media/GENTAHAX/Script/here.lua
+Android/media/GENTAHAX/Script/here.lua
 ```
+
+* ### ```Function's / Method```
