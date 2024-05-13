@@ -1,8 +1,7 @@
 - `Fuck You`
 
 
-* ## `NetAvatar`
-```lua
+* `NetAvatar`
 | Type       | Attribute     |
 |------------|---------------|
 | Vector2i   | pos           |
@@ -29,4 +28,3 @@
 | Vector4i   | quickSlot     |
 | int        | backpackSlot  |
 | uint32_t   | selectedItem  |
-```
