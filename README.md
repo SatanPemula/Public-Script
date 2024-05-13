@@ -2,6 +2,7 @@
 
 
 * `NetAvatar`
+
 | Type       | Attribute     |
 |------------|---------------|
 | Vector2i   | pos           |
