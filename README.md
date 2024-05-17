@@ -20,7 +20,7 @@ Android/media/GENTAHAX/Script/Script.lua
 * [getCamera](getcamera) 
 * [setCamera](setcamera) 
 * [getGid](getgid) 
-* [setGid(setgid) 
+* [setGid](setgid) 
 * [getMac](getmac) 
 * [setMac](setmac) 
 * [randomGid](randomgid)
