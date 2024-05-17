@@ -1,4 +1,4 @@
-* ### Simple Script Methode GENTA HAX
+* # Simple Script Methode GENTA HAX
 
 * `For Structs , You Can Check In:` [GentaHaxDocs](https://github.com/GENTA7740/GENTA-HAX-DOCS) 
 
