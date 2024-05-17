@@ -1,1 +1,1 @@
-### Simple Script Methode GENTA HAX
+* ### Simple Script Methode GENTA HAX
